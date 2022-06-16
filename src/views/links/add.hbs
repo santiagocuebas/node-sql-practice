@@ -1,7 +1,19 @@
-<form>
-	<input type="text" placeholder="Nombre">
-	<input type="text" placeholder="Usuario">
-	<input type="password" placeholder="Contraseña">
-	<textarea placeholder="Descripción"></textarea>
-	<button>Enviar</button>
-</form>
+
+<div class="container">
+	<div class="container-form">
+		<form action="/links/add" method="POST">
+			<div class="form-box">
+				<input class="form-input" type="text" name="title" placeholder="Title">
+			</div>
+			<div class="form-box">
+				<input class="form-input" type="url" name="url" placeholder="URL">
+			</div>
+			<div class="form-box">
+				<textarea class="form-input" name="description" placeholder="Description"></textarea>
+			</div>
+			<div class="form-box">
+				<button class="button">Save</button>
+			</div>
+		</form>
+	</div>
+</div>

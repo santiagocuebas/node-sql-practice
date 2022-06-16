@@ -1,0 +1,63 @@
+
+* {
+	font-family: 'Tai Heritage Pro', Helvetica, sans-serif;
+}
+
+/* NAV */
+
+.nav {
+	width: 100%;
+	height: 80px;
+	background: rgb(45, 167, 98);
+}
+
+/* FORM */
+
+textarea {
+	resize: none;
+}
+
+.container {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+}
+
+.container-form {
+	min-width: min-content;
+	margin: auto;
+	margin-top: 10%;
+	padding: 20px;
+	border: 1px solid rgb(191, 191, 191);
+	border-radius: 2%;
+}
+
+.form-box {
+	min-width: 300px;
+}
+
+.form-input {
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 2px 0 2px 5px;
+	border: 2px solid rgb(215, 215, 215);
+	border-radius: 3px;
+}
+
+.form-input:focus {
+	border: 2px solid rgb(56, 156, 255);
+	outline: none;
+}
+
+.button {
+	background: rgb(103, 187, 188);
+	border: none;
+	width: 100%;
+	padding: 10px 0;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+
+.button:hover {
+	background: rgb(113, 197, 198);
+}
