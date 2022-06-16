@@ -1,0 +1,6 @@
+
+-- DELETE ALL ROWS
+
+DELETE FROM users;
+
+DROP TABLE links;
