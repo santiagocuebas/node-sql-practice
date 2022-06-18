@@ -1,5 +1,5 @@
 
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
 import { promisify } from 'util';
 import { database } from './keys.js';
@@ -15,7 +15,8 @@ pool.getConnection((err,connection) => {
 
 	if (connection) connection.release();
 	console.log('DB is Connected');
-	return
+	
+	return;
 });
 
 // Promisify Pool Query

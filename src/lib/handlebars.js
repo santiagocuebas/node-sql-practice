@@ -1,6 +1,8 @@
 
-import { Router } from 'express';
+import { format } from 'timeago.js';
 
-const router = Router();
+const helpers = {};
 
-export default router;
+helpers.timeago = timestamp => format(timestamp);
+
+export default helpers;
