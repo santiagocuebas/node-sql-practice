@@ -6,11 +6,13 @@ import session from 'express-session';
 import validator from 'express-validator';
 import passport from 'passport';
 import flash from 'connect-flash';
+import promiseSQL from 'mysql2/promise';
 import MySQLStore from 'express-mysql-session';
 import bodyParser from 'body-parser';
 
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { database } from './keys.js';
 
 // IndexRoutes
 import iRoutes from './routes/index.js';
@@ -21,6 +23,8 @@ import lRoutes from './routes/links.js';
 // Initializations 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const pool = promiseSQL.createPool(database);
+const sessionStore = new MySQLStore({}, pool);
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -31,17 +35,27 @@ app.engine('.hbs', engine({
 	partialsDir: join(app.get('views'), 'partials'),
 	extname: '.hbs',
 	helpers: handlebars
-
 }));
 app.set('view engine', '.hbs');
 
 // Middlewares
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(session({
+	key: 'unnombrecualquiera',
+	secret: 'otronombrecualquiera',
+	store: sessionStore,
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(flash());
 
 // Global Variables
 app.use((req,res,next)=>{
+	app.locals.message = req.flash('message');
+	app.locals.success = req.flash('success');
+	app.locals.user = req.user;
 	next();
 });
 

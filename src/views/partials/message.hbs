@@ -1,0 +1,22 @@
+
+{{#if message}}
+<div class="message-container">
+	<div class="message">
+		<p class="message-text">{{message}}</p>
+		<button type="button" class="close">
+			<span>&times;</span>
+		</button>
+	</div>
+</div>
+{{/if}}
+
+{{#if success}}
+<div class="message-container">
+	<div class="message">
+		<p class="message-text">{{success}}</p>
+		<button type="button" class="close">
+			<span>&times;</span>
+		</button>
+	</div>
+</div>
+{{/if}}

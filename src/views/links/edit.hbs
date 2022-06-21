@@ -1,0 +1,19 @@
+
+<div class="container">
+	<div class="container-form">
+		<form action="/links/edit/{{link.id}}" method="POST">
+			<div class="form-box">
+				<input class="form-input" type="text" name="title" placeholder="Title" value="{{link.title}}">
+			</div>
+			<div class="form-box">
+				<input class="form-input" type="url" name="url" placeholder="URL" value="{{link.url}}">
+			</div>
+			<div class="form-box">
+				<textarea class="form-input" name="description" placeholder="Description">{{link.description}}</textarea>
+			</div>
+			<div class="form-box">
+				<button class="button">Save</button>
+			</div>
+		</form>
+	</div>
+</div>

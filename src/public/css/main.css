@@ -3,6 +3,15 @@
 	font-family: 'Tai Heritage Pro', Helvetica, sans-serif;
 }
 
+textarea {
+	resize: none;
+}
+
+a {
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+}
+
 /* NAV */
 
 .nav {
@@ -52,7 +61,7 @@
 	height: 24px;
 	font-size: 16px;
 	padding: 0 12px;
-	border-radius: 4%;
+	border-radius: 12px;
 }
 
 .session {
@@ -64,10 +73,6 @@
 }
 
 /* FORM */
-
-textarea {
-	resize: none;
-}
 
 .container {
 	display: flex;
@@ -112,4 +117,78 @@ textarea {
 
 .button:hover {
 	background: rgb(113, 197, 198);
+}
+
+/* LIST */
+
+.box-links {
+	display: grid;
+	grid-template-columns: repeat(3, 200px);
+	grid-auto-rows: 1fr;
+	width: 70%;
+	min-width: 600px;
+	max-width: 800px;
+	margin: auto;
+	outline: 3px solid rgb(0, 0, 0);
+	gap: 5px;
+	padding: 10px;
+	justify-content: center;
+}
+
+.links {
+	display: grid;
+	grid-auto-rows: 1fr;
+	outline: 1px solid rgb(207, 207, 207);
+	padding: 5px;
+	height: auto;
+}
+
+.box-buttons {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	padding: 5px;
+}
+
+.btn-delete {
+	padding: 5px 30px;
+	background: rgb(220, 55, 55);
+	border: none;
+	outline: 1px solid rgb(191, 0, 0);
+}
+
+.btn-delete:hover {
+	background: rgb(210, 45, 45);
+}
+
+.btn-edit {
+	padding: 5px 10px;
+	background: rgb(210, 210, 210);
+	border: none;
+	outline: 1px solid rgb(191, 191, 191);
+}
+
+.btn-edit:hover {
+	background: rgb(200, 200, 200);
+}
+
+/* Message */
+
+.message-container {}
+
+.message {
+	display: flex;
+	justify-content: space-between;
+	width: 70%;
+	min-width: 600px;
+	max-width: 800px;
+	padding: 10px 20px;
+	margin: 20px auto;
+	border: 1px solid rgb(100,181,100);
+	border-radius: 6px;
+}
+
+.message-text {
+	color: rgb(100,181,100);
+	font-size: 32px;
 }

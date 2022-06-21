@@ -1,8 +1,29 @@
-<div>
+<div class="box-links">
 	{{#each links}}
-		<p>{{title}}</p>
-		<p>{{url}}</p>
-		<p>{{description}}</p>
-		<p>{{timeago created_at}}</p>
+		<div class="links">
+			<div>
+				<h2>{{title}}</h2>
+			</div>
+			<div>
+				<a href="{{url}}" target="_blank">{{url}}</a>
+			</div>
+			<div>
+				{{description}}
+			</div>
+			<div>
+				{{timeago created_at}}
+			</div>
+			<div class="box-buttons">
+				<a href="/links/delete/{{id}}" class="btn-delete">Delete</a>
+				<a href="/links/edit/{{id}}" class="btn-edit">Edit</a>
+			</div>
+		</div>
+	{{else}}
+		<div>
+			<div>
+				<p>There are not links saved yet</p>
+				<a href="/links/add">Create One!</a>
+			</div>
+		</div>
 	{{/each}}
 </div>
