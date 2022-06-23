@@ -19,6 +19,7 @@ import iRoutes from './routes/index.js';
 import handlebars from './lib/handlebars.js';
 import aRoutes from './routes/authentication.js';
 import lRoutes from './routes/links.js';
+import passRoute from './lib/passport.js';
 
 // Initializations 
 const app = express();
@@ -50,6 +51,8 @@ app.use(session({
 	saveUninitialized: false
 }));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Global Variables
 app.use((req,res,next)=>{

@@ -80,13 +80,31 @@ a {
 	height: 100vh;
 }
 
+.container-all {
+	min-width: min-content;
+	margin: auto;
+	margin-top: 10%;
+}
+
+.form-title {
+	padding: 20px;
+	border: 1px solid rgb(191, 191, 191);
+	border-radius: 4px;
+}
+
 .container-form {
 	min-width: min-content;
 	margin: auto;
 	margin-top: 10%;
 	padding: 20px;
 	border: 1px solid rgb(191, 191, 191);
-	border-radius: 2%;
+	border-radius: 4px;
+}
+
+.no-principal {
+	min-width: none;
+	margin: none;
+	margin-top: 0;
 }
 
 .form-box {
