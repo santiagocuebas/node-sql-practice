@@ -3,36 +3,37 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 
 import pool from '../database.js';
-import helpers from '../lib/helpers.js';
+import { encryptPassword, matchPassword } from './helpers.js';
 
 passport.use('local.login', new LocalStrategy({
-	usernameField: 'username',
+	usernameField: 'email',
 	passwordField: 'password',
 	passReqToCallback: true
-}, async (req, username, password, done) => {
-	const data =  await pool.query('SELECT * FROM users Where username = ?', [username]);
+}, async (req, email, password, done) => {
+	const data =  await pool.query('SELECT * FROM users Where email = ?', [email]);
 	if (data.length > 0) {
 		const user = data[0];
-		const validPassword = await helpers.matchPassword(password, user.password);
-		if (validPassword) done(null, user, req.flash('success', 'Welcome ' + user.username));
+		const validPassword = await matchPassword(password, user[0].password);
+		if (validPassword) done(null, user[0], req.flash('success', 'Welcome ' + user.name + user.lastname));
 		else done(null, false, req.flash('message', 'Incorrect Password'));
-	} else return done(null, false, req.flash('message', 'The Username does not exists'));
+	} else return done(null, false, req.flash('message', 'The email does not exists'));
 }));
 
 passport.use('local.signup', new LocalStrategy({
-	usernameField: 'username',
+	usernameField: 'email',
 	passwordField: 'password',
 	passReqToCallback: true
-}, async (req, username, password, done) => {
-	const { fullname } = req.body;
+}, async (req, email, password, done) => {
+	const { name, lastname } = req.body;
 	const newUser = {
-		username,
+		email,
 		password,
-		fullname
+		name,
+		lastname
 	};
-	newUser.password = await helpers.encryptPassword(password);
-	const res = await pool.query('INSERT INTO users Set ?', [newUser]);
-	newUser.id = res.insertId;
+	newUser.password = await encryptPassword(password);
+	const res = await pool.query('INSERT INTO users Set ? ', [newUser]);
+	newUser.id = res[0].insertId;
 	return done(null, newUser);
 }));
 

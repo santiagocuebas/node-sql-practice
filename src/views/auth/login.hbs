@@ -1,23 +1,33 @@
 
 <div class="container">
-	<div class="container-all">
-		<div class="form-title">
-			<h3>Login</h3>
+	<div class="card">
+		<div class="card-title">
+			<h2>Favorited Links</h2>
 		</div>
-		<div class="container-form no-principal">
-			<form action="/login" method="POST">
-				<div class="form-box">
-					<input type="email" class="form-input" name="username" placeholder="User Name">
-				</div>
-				<div class="form-box">
-					<input type="password" class="form-input" name="password" placeholder="Password">
-				</div>
-				<div class="form-box">
-					<button class="button">
-							Login
-					</button>
-				</div>
-			</form>
+		<div class="card-body">
+			<div class="form-title">
+				Login on Favorited Links
+			</div>
+			<div class="form-body">
+				<form action="/login" method="POST">
+					<div class="form-box">
+						<input type="email" class="form-input" name="email" placeholder="E-mail">
+					</div>
+					<div class="form-box">
+						<input type="password" class="form-input" name="password" placeholder="Password">
+					</div>
+					<div class="form-box">
+						<button class="form-btn">
+								Login
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="form-footer">
+				<a href="/signup" class="link-signup">
+					Sign Up on Favorited Links
+				</a>
+			</div>
 		</div>
 	</div>
 </div>

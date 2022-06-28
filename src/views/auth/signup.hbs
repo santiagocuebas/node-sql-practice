@@ -1,26 +1,34 @@
 
 <div class="container">
-	<div class="container-all">
-		<div class="form-title">
-			<h3>Sign Up</h3>
+	<div class="card">
+		<div class="card-title">
+			<h2>Dedicated Links</h2>
 		</div>
-		<div class="container-form no-principal">
-			<form action="/signup" method="POST">
-				<div class="form-box">
-					<input type="text" class="form-input" name="fullname" placeholder="Full Name">
+		<div class="card-body">
+			<div class="form-title">
+					¡Create a Account!
 				</div>
-				<div class="form-box">
-					<input type="email" class="form-input" name="username" placeholder="User Name">
-				</div>
-				<div class="form-box">
-					<input type="password" class="form-input" name="password" placeholder="Password">
-				</div>
-				<div class="form-box">
-					<button class="button">
-							SignUp
-					</button>
-				</div>
-			</form>
+			<div class="form-body">
+				<form action="/signup" method="POST">
+					<div class="form-box">
+						<div class="form-fullname">
+							<input type="text" class="form-input" name="name" placeholder="Name">
+							<input type="text" class="form-input" name="lastname" placeholder="Lastname">
+						</div>
+					</div>
+					<div class="form-box">
+						<input type="email" class="form-input" name="email" placeholder="E-mail">
+					</div>
+					<div class="form-box">
+						<input type="password" class="form-input" name="password" placeholder="Password">
+					</div>
+					<div class="form-box">
+						<button class="form-button">
+								Sign Up
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>

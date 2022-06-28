@@ -8,7 +8,6 @@ import passport from 'passport';
 import flash from 'connect-flash';
 import promiseSQL from 'mysql2/promise';
 import MySQLStore from 'express-mysql-session';
-import bodyParser from 'body-parser';
 
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';

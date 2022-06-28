@@ -1,27 +1,19 @@
 
+{{#if user}}
 <nav class="nav">
 	<div class="nav-container">
 		<div class="nav-title">
 			Favorite Links
 		</div>
 		<div class="nav-form">
-			<form>
-				<div class="box-form">
-					<div>
-						<input class="nav-input" type="text">
-					</div>
-					<div>
-						<input class="nav-input" type="password">
-					</div>
-					<div>
-						<button class="nav-button session">Iniciar Sesión</button>
-					</div>
-				</div>
-			</form>
-			<span>o</span>
-			<div>
-				<button class="nav-button registered">Registrate</button>
-			</div>
+			<div><a href="/profile">My Profile</a></div>
+			<span> | </span>
+			<div><a href="/links">My Links</a></div>
+			<span> | </span>
+			<div><a href="/links/add">Add a Link</a></div>
+			<span> | </span>
+			<div><a href="/logout">Logout</a></div>
 		</div>
 	</div>
 </nav>
+{{/if}}

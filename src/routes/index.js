@@ -1,8 +1,9 @@
 
 import { Router } from 'express';
-
 const router = Router();
 
-router.get('/', (req,res) => res.render('index'));
+import { isNotLoggedIn } from '../lib/auth.js';
+
+router.get('/', isNotLoggedIn, (req,res) => res.render('index.hbs'));
 
 export default router;
