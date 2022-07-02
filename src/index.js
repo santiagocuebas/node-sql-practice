@@ -6,12 +6,12 @@ import session from 'express-session';
 import validator from 'express-validator';
 import passport from 'passport';
 import flash from 'connect-flash';
-import promiseSQL from 'mysql2/promise';
 import MySQLStore from 'express-mysql-session';
 
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { database } from './keys.js';
+import { PORT } from './config.js';
+import pool from './database.js';
 
 // IndexRoutes
 import iRoutes from './routes/index.js';
@@ -23,11 +23,9 @@ import passRoute from './lib/passport.js';
 // Initializations 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const pool = promiseSQL.createPool(database);
-const sessionStore = new MySQLStore({}, pool);
 
 // Settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', PORT);
 app.set('views', join(__dirname, 'views'));
 app.engine('.hbs', engine({
 	defaultLayout: 'main',
@@ -45,7 +43,7 @@ app.use(express.json());
 app.use(session({
 	key: 'unnombrecualquiera',
 	secret: 'otronombrecualquiera',
-	store: sessionStore,
+	store: new MySQLStore({}, pool),
 	resave: false,
 	saveUninitialized: false
 }));
@@ -57,7 +55,7 @@ app.use(passport.session());
 app.use((req,res,next)=>{
 	app.locals.message = req.flash('message');
 	app.locals.success = req.flash('success');
-	app.locals.user = req.user;
+	app.locals.user = req.user[0];
 	next();
 });
 
@@ -70,5 +68,5 @@ app.use('/links',lRoutes);
 app.use(express.static(join(__dirname, 'public')));
 
 // Listening
-app.listen(app.get('port'));
-console.log('Server on port', app.get('port'));
+app.listen(PORT);
+console.log('Server on port', PORT);

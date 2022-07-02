@@ -11,10 +11,11 @@ passport.use('local.login', new LocalStrategy({
 	passReqToCallback: true
 }, async (req, email, password, done) => {
 	const data =  await pool.query('SELECT * FROM users Where email = ?', [email]);
-	if (data.length > 0) {
-		const user = data[0];
-		const validPassword = await matchPassword(password, user[0].password);
-		if (validPassword) done(null, user[0], req.flash('success', 'Welcome ' + user.name + user.lastname));
+	const data2 = data[0];
+	if (data2.length > 0) {
+		const user = data2[0];
+		const validPassword = await matchPassword(password, user.password);
+		if (validPassword) done(null, user, req.flash('success', `Welcome ${user.name} ${user.lastname}`));
 		else done(null, false, req.flash('message', 'Incorrect Password'));
 	} else return done(null, false, req.flash('message', 'The email does not exists'));
 }));
