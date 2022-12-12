@@ -1,7 +1,7 @@
 
 import { Router } from 'express';
 import pool from '../database.js';
-import { isLoggedIn } from '../lib/auth.js';
+import { isLoggedIn } from '../lib/logged.js';
 
 const router = Router();
 
@@ -13,7 +13,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
 		title,
 		url,
 		description,
-		user_id: req.user[0].id
+		user_id: req.user.id
 	};
 	await pool.query('INSERT INTO links SET ? ', [newLink]);
 	req.flash('success', 'Link Saved Successfully');
@@ -21,7 +21,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
 });
 
 router.get('/', isLoggedIn, async (req, res) => {
-	const links = await pool.query('SELECT * FROM links Where user_id = ?', [req.user[0].id]);
+	const links = await pool.query('SELECT * FROM links Where user_id = ?', [req.user.id]);
 	const links2 = links[0];
 	res.render('links/list.hbs', { links: links2 });
 });

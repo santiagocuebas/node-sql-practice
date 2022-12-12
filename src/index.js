@@ -1,24 +1,21 @@
-
 import express from 'express';
 import morgan from 'morgan';
 import { engine } from 'express-handlebars';
 import session from 'express-session';
-import validator from 'express-validator';
 import passport from 'passport';
 import flash from 'connect-flash';
 import MySQLStore from 'express-mysql-session';
-
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { PORT } from './config.js';
 import pool from './database.js';
+import * as helpers from './lib/helpers.js';
+import './lib/passport.js';
 
-// IndexRoutes
+// Index Routes
 import iRoutes from './routes/index.js';
-import handlebars from './lib/handlebars.js';
-import aRoutes from './routes/authentication.js';
+import aRoutes from './routes/auth.js';
 import lRoutes from './routes/links.js';
-import passRoute from './lib/passport.js';
 
 // Initializations 
 const app = express();
@@ -29,10 +26,10 @@ app.set('port', PORT);
 app.set('views', join(__dirname, 'views'));
 app.engine('.hbs', engine({
 	defaultLayout: 'main',
-	layaoutsDir: join(app.get('views'), 'layouts'),
+	layoutsDir: join(app.get('views'), 'layouts'),
 	partialsDir: join(app.get('views'), 'partials'),
 	extname: '.hbs',
-	helpers: handlebars
+	helpers
 }));
 app.set('view engine', '.hbs');
 
@@ -52,10 +49,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Global Variables
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
 	app.locals.message = req.flash('message');
 	app.locals.success = req.flash('success');
-	app.locals.user = req.user[0];
+	app.locals.user = req.user;
 	next();
 });
 
